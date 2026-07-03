@@ -132,7 +132,7 @@ function markCorrect(teamId) {
   const team = state.teams.find((t) => t.id === teamId);
   const question = getCurrentQuestion();
   if (team && question) team.score += question.value;
-  closeQuestion();
+  revealAnswer();
   return state;
 }
 

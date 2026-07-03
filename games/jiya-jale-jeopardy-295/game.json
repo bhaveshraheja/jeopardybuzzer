@@ -1,0 +1,253 @@
+{
+  "id": "jiya-jale-jeopardy-295",
+  "name": "Jiya Jale Jeopardy",
+  "createdAt": "2026-07-03T18:23:53.811Z",
+  "categories": [
+    {
+      "name": "I'm new here!",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Miss Asia Pacific 2000 who made her debut Bollywood movie with R Madhavan",
+          "answer": "Who is Dia Mirza?",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "This \"Chocolate Boy\" made his debut in a campus comedy meets romance meets drama movie in 2003 - Ishq Vishk",
+          "answer": "Who is Shahid Kapoor?",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "The famous towel dropping scene from this movie brought Ranbir Kapoor into the limelight",
+          "answer": "What is Sawariya?",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "He is the son of a famous comedy-movide director who debuted alongside Sidharth Malhotra. His debut movie's sequel was popularly know with its 4-letter acronym SOTY2",
+          "answer": "Who is Varun Dhawan?",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "These two actresses made their debut with Tiger Shroff in SOTY2. Hint: One of them is a daughter of actor Chunky Pandey",
+          "answer": "Who are Ananya Pandey and Tara Sutaria?",
+          "image": null
+        },
+        {
+          "value": 600,
+          "question": "This singer/actor won the filmare award for Best Male Debut in 2016 for his performance in a movie costarring Shahid Kapoor",
+          "answer": "Who is Diljit Dosanjh?",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "Saat Samundar Paar",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Famous for not attending Filmfare and other awards, this actor attended the Academy Awards in 2009 when his movie \"Lagaan\" was nominated",
+          "answer": "Who is Aamir Khan?",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "Bollywood movie starring Akshay Kumar & Kareen Kapoor which had special appearances from Sylvester Stallone, Denise Richards, Brandon Routh",
+          "answer": "What is Kambakth Ishq?",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "Priyanka Chopra Jonas played an FBI recruit in this popular drama thriller on ABC?",
+          "answer": "What is Quantico?",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "Played Sonia in the Pink Panther 2 movie, this winner of the Miss World pageant & Indian actress is a regular at Cannes film festival and also appeared as a guest on the Oprah Winfrey show",
+          "answer": "Who is Aishwarya Rai?",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "Mexican actress Barbara Mori starred alongside Hrithik Roshan in this romantic action thriller film directed by Anurag Basu",
+          "answer": "What is Kites?",
+          "image": "images/q1.jpg"
+        },
+        {
+          "value": 600,
+          "question": "70 & 80s star famous for the role in Bond movie Octopussy. Also, played roles in American TV shows like Dynasty and The Bold & the Beautiful",
+          "answer": "Who is Kabir Bedi?",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "Rishtey mein to ...Hum tumhaare baap lagte hain",
+      "questions": [
+        {
+          "value": 100,
+          "question": "This Aamir Khan movie was famous for bringing the song \"Papa Kehte Hain\" into our homes",
+          "answer": "What is Qayamat Se Qayamat Tak?",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "Anjali's father was played by this actor in Kuch Kuch Hota Hain",
+          "answer": "Who is Shah Rukh Khan?",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "Alia Bhatt starred in this 2018 movie ____, a song ___ \u00a0which her depicting her sadness for leaving her dad after marriage.",
+          "answer": "What is Raazi and Dilbaro?",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "Alok Nath played the role of the father Ramkishan Chaturvedi in this epic family-value-based star-studded movie starring Monish Behl, Saif Ali Khan & Salman Khan",
+          "answer": "What is Hum Saath Saath Hain?",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "A real-life father son duo played opposite roles, i.e. son father in this movie. (Hint: The mother's role was played by Vidya Balan)",
+          "answer": "What is Paa?",
+          "image": null
+        },
+        {
+          "value": 600,
+          "question": "Character name of strict Indian dad portrayed by Amrish Puri in the romantic movie Dilwale Dulhania Le Jayenge",
+          "answer": "What is Baldev Singh Chaudhary?",
+          "image": "images/q2.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Mere paas maa hai",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Main kabhi batlata nahin\nPar andhere se darta hun main maa\nYun to main dikhlata nahin\nTeri parwaah karta hun main maa\nwas a part of this movie",
+          "answer": "What is Taare Zameen Par?",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "Being put in a spot in a elocution competition, Anjali cannot speak when she gets the topic \"Maa\". Which actress played the role of her mother in the movie Kuch Kuch Hota Hai?",
+          "answer": "Who is Rani Mukherjee?",
+          "image": "images/q3.jpg"
+        },
+        {
+          "value": 300,
+          "question": "This actress was shell-shocked to hear her son was swinging the other way in the move Dostana",
+          "answer": "Who is Kirron Kher?",
+          "image": "images/q4.gif"
+        },
+        {
+          "value": 400,
+          "question": "This actress played the mother's role in the movie Karan Arjun",
+          "answer": "Who is Rakhee Gulzar?",
+          "image": "images/q5.gif"
+        },
+        {
+          "value": 500,
+          "question": "A famous 50s and 60s actress, she made her comeback as Ajay Singh Rathod(Madhavan)'s mother in the movie Rang De Basanti",
+          "answer": "Who is Waheeda Rehman?",
+          "image": "images/q6.jpg"
+        },
+        {
+          "value": 600,
+          "question": "__________ : Dilwale Dulhaniya Le Jayenge\nMrs. Khanna : Kuch Kuch Hota Hai\nDaijan/DJ \u00a0 \u00a0 \u00a0: Kabhi Khushi Kabhi Gham\nMother or mother-like Roles played by Farida Jalal in movies",
+          "answer": "What is Lajwanti/Lajjo?",
+          "image": "images/q7.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Khel Khel Mein",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Movie based on two female wrestlers and their story to success where Aamir Khan played the father (also a wrestler)'s role",
+          "answer": "What is Dangal?",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "\"__ minute\n\u00a0__ minute hai tumhare paas\nshayad\ntumhari zindagi ke sabse khaas __ minute\"",
+          "answer": "What is sattar (70)?",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "This director turned actor played the protagonist Milkha Singh in the biopic movie Bhaag Milkha Bhaag",
+          "answer": "Who is Farhan Akhtar?",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "Priyanka Chopra played the lead actress in this movie with the same name as the athlete it was portrayed upon",
+          "answer": "What is Mary Kom",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "A rare bollywood movie based on football starring John Abraham, Bipasha Basu, Arshad Warsi and Boman Irani",
+          "answer": "What is Dhan Dhana Dhan Goal?",
+          "image": null
+        },
+        {
+          "value": 600,
+          "question": "What sport was portrayed in this 90s Aamir Khan movie costarring Deepak Tijori",
+          "answer": "What is cycle racing?",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "K K K...Kapoor",
+      "questions": [
+        {
+          "value": 100,
+          "question": "The great-great-great-great grandchild of Prithviraj Kapoor",
+          "answer": "Who is Taimur Ali Khan?",
+          "image": "images/q8.jpg"
+        },
+        {
+          "value": 200,
+          "question": "Kareena, Randhir, Ranbeer, Shahid, Rishi, Karishma. The Kapoor that is not a descendant of Raj Kapoor",
+          "answer": "Who is Shahid Kapoor?",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "Famous Kapoor who succumbed to cancer recently",
+          "answer": "Who is Rishi Kapoor?",
+          "image": "images/q9.jpg"
+        },
+        {
+          "value": 400,
+          "question": "Owner of the sneaker store Veg.Non-Veg, Anand Ahuja is the son-in-law of this famous Kapoor",
+          "answer": "Who is Anil Kapoor?",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "Sanjana (Kareena Kapoor) was Papa's Pari in this famous song \"Papa Ki Pari Hoon Main' in this movie co-starring Hrithik Roshan",
+          "answer": "What is Main Prem Ki Deewani Hoon?",
+          "image": null
+        },
+        {
+          "value": 600,
+          "question": "Last movie starring Akshaye Khanna and Aishwarya Rai to be produced under the R.K Films banner, which recently had it's iconic studio sold to Godrej",
+          "answer": "What is Aa Ab Laut Chalein?",
+          "image": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,157 @@
-body { font-family: sans-serif; margin: 1rem; }
-.column { display: inline-flex; flex-direction: column; gap: 0.5rem; margin-right: 1rem; }
-.cell { padding: 1rem; }
-.cell:disabled { opacity: 0.3; }
-.timer.late { color: red; font-weight: bold; }
-.team-row { margin-bottom: 0.5rem; }
+* { box-sizing: border-box; }
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  background: #f2f3f7;
+  color: #1a1a2e;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: #0f1e8c;
+  color: white;
+}
+.topbar h1 { font-size: 1.25rem; margin: 0; }
+.scores-bar { display: flex; gap: 1.25rem; font-weight: 600; font-size: 1rem; }
+
+.layout {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e0e1eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b6f8a;
+}
+
+.row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+
+button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid #c7c9dd;
+  border-radius: 0.4rem;
+  background: white;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #f0f1fa; }
+button:disabled { opacity: 0.4; cursor: default; }
+button.primary { background: #0f1e8c; color: white; border-color: #0f1e8c; }
+button.primary:hover:not(:disabled) { background: #0c1770; }
+
+select, input[type="text"] {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #c7c9dd;
+  border-radius: 0.4rem;
+}
+
+.team-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.team-row input[type="text"] { flex: 1; min-width: 0; }
+
+.board-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.4rem;
+}
+.board-grid .column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.board-grid .header {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-align: center;
+  background: #eceefa;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.3rem;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.15;
+}
+.board-grid .cell {
+  background: #0f1e8c;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.9rem 0.3rem;
+}
+.board-grid .cell:disabled {
+  background: #dcdde8;
+  color: #b6b8cc;
+  opacity: 1;
+}
+
+#question-panel .q-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+#question-panel .a-text { font-size: 1rem; color: #3a3d5c; margin-bottom: 0.5rem; }
+#question-panel .status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  background: #ffcc33;
+  color: #4a3900;
+  margin-bottom: 0.5rem;
+}
+#question-panel .timer { font-size: 1.4rem; font-variant-numeric: tabular-nums; margin-bottom: 0.5rem; }
+.timer.late { color: #d92626; font-weight: 700; }
+#question-panel .buzz-winner { font-weight: 700; margin-bottom: 0.75rem; }
+#question-panel .team-buttons { display: flex; flex-direction: column; gap: 0.4rem; }
+#question-panel .team-buttons span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: #f7f7fb;
+  border-radius: 0.3rem;
+}
+#question-panel .team-buttons .team-name { flex: 1; font-weight: 600; }
+.correct-btn { border-color: #2f9e44; color: #2f9e44; }
+.wrong-btn { border-color: #d92626; color: #d92626; }
+
+.question-controls { margin-top: 0.75rem; border-top: 1px solid #eceefa; padding-top: 0.75rem; }

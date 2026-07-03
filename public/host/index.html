@@ -5,31 +5,57 @@
   <link rel="stylesheet" href="host.css" />
 </head>
 <body>
-  <h1>Host Panel</h1>
+  <header class="topbar">
+    <h1>Jeopardy Host</h1>
+    <div id="team-scores" class="scores-bar"></div>
+  </header>
 
-  <section id="setup-section">
-    <select id="game-select"></select>
-    <button id="load-game-btn">Load Game</button>
-    <div id="teams-setup"></div>
-    <button id="add-team-btn">Add Team</button>
-    <button id="save-teams-btn">Save Teams</button>
-  </section>
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Game</h2>
+        <div class="row">
+          <select id="game-select"></select>
+          <button id="load-game-btn">Load Game</button>
+        </div>
+      </section>
 
-  <section id="intro-controls">
-    <button id="start-intro-btn">Start Category Intro</button>
-    <button id="next-category-btn">Next Category</button>
-    <button id="end-intro-btn">End Intro / Show Board</button>
-  </section>
+      <section class="panel">
+        <h2>Teams</h2>
+        <div id="teams-setup"></div>
+        <div class="row">
+          <button id="add-team-btn">Add Team</button>
+          <button id="save-teams-btn" class="primary">Save Teams</button>
+        </div>
+      </section>
 
-  <div id="board-grid"></div>
-  <div id="question-panel"></div>
-  <div id="team-scores"></div>
+      <section class="panel">
+        <h2>Category Intro</h2>
+        <div class="row">
+          <button id="start-intro-btn">Start</button>
+          <button id="next-category-btn">Next</button>
+          <button id="end-intro-btn">Show Board</button>
+        </div>
+      </section>
+    </aside>
 
-  <section id="question-controls">
-    <button id="reveal-answer-btn">Reveal Answer</button>
-    <button id="close-question-btn">Close Question</button>
-    <button id="reset-buzzer-btn">Reset Buzzer</button>
-  </section>
+    <main class="main">
+      <section class="panel">
+        <h2>Board</h2>
+        <div id="board-grid" class="board-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Current Question</h2>
+        <div id="question-panel"></div>
+        <div class="row question-controls">
+          <button id="reveal-answer-btn">Reveal Answer</button>
+          <button id="close-question-btn">Close Question</button>
+          <button id="reset-buzzer-btn">Reset Buzzer</button>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="/shared/ws-client.js"></script>
   <script src="host.js"></script>

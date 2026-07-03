@@ -1,0 +1,5 @@
+.idea/
+.claude/
+.superpowers/
+node_modules/
+*.iml

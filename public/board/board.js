@@ -8,7 +8,7 @@ const client = createWsClient({
 function render(state) {
   const root = document.getElementById('root');
   if (!state.game) {
-    root.innerHTML = '<h1 style="text-align:center;padding-top:20vh;">Waiting for host to load a game...</h1>';
+    root.innerHTML = '<div class="waiting">Waiting for host to load a game...</div>';
     return;
   }
 
@@ -36,14 +36,17 @@ function renderIntro(state) {
 }
 
 function renderGrid(state) {
-  let html = '<div class="grid">';
+  const numCols = state.game.categories.length;
+  const numRows = state.game.categories[0].questions.length;
+  let html = `<div class="grid" style="grid-template-columns: repeat(${numCols}, 1fr); grid-template-rows: 4.5rem repeat(${numRows}, 1fr);">`;
   state.game.categories.forEach((category, cIdx) => {
-    html += `<div class="column"><div class="header">${category.name}</div>`;
+    html += `<div class="header" style="grid-column:${cIdx + 1}; grid-row:1;">${category.name}</div>`;
+  });
+  state.game.categories.forEach((category, cIdx) => {
     category.questions.forEach((q, qIdx) => {
       const answered = state.board[cIdx][qIdx] === 'answered';
-      html += `<div class="cell ${answered ? 'answered' : ''}">${answered ? '' : q.value}</div>`;
+      html += `<div class="cell ${answered ? 'answered' : ''}" style="grid-column:${cIdx + 1}; grid-row:${qIdx + 2};">${answered ? '' : q.value}</div>`;
     });
-    html += '</div>';
   });
   html += '</div>';
   return html;
@@ -54,9 +57,9 @@ function renderQuestion(state) {
   const question = state.game.categories[categoryIdx].questions[questionIdx];
   const winnerTeam = state.teams.find((t) => t.id === state.buzzWinner);
 
-  let html = '<div class="question">';
+  let html = '<div class="view">';
   html += `<div class="text">${question.question}</div>`;
-  if (question.image) html += `<img src="/games/${state.gameId}/${question.image}" style="max-width:50vw;" />`;
+  if (question.image) html += `<img src="/games/${state.gameId}/${question.image}" />`;
   if (state.phase === 'answer' && question.answer) {
     html += `<div class="answer">${question.answer}</div>`;
   }

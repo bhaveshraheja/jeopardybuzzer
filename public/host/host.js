@@ -94,7 +94,7 @@ let timerInterval;
 function renderQuestionPanel(state) {
   const root = document.getElementById('question-panel');
   if (!state.currentQuestion) {
-    root.innerHTML = '<p>No question selected</p>';
+    root.innerHTML = '<p style="color:#8a8da8;">No question selected — click a cell on the board.</p>';
     clearInterval(timerInterval);
     return;
   }
@@ -102,13 +102,15 @@ function renderQuestionPanel(state) {
   const question = state.game.categories[categoryIdx].questions[questionIdx];
 
   root.innerHTML = `
+    ${state.phase === 'answer' ? '<div class="status-badge">Answer Revealed</div>' : ''}
     <div class="q-text">${question.question}</div>
     <div class="a-text">Answer: ${question.answer}</div>
     <div class="timer" id="host-timer">0s</div>
     <div class="buzz-winner">${state.buzzWinner ? teamName(state, state.buzzWinner) : 'No buzz yet'}</div>
     <div class="team-buttons">
       ${state.teams.map((t) => `
-        <span>${t.name}
+        <span>
+          <span class="team-name">${t.name}</span>
           <button class="correct-btn" data-team="${t.id}" ${state.buzzWinner === t.id ? '' : 'disabled'}>Correct</button>
           <button class="wrong-btn" data-team="${t.id}" ${state.buzzWinner === t.id ? '' : 'disabled'}>Wrong</button>
         </span>`).join('')}

@@ -1,5 +1,6 @@
 let myTeamId = null;
 let currentState = null;
+let feedbackTimer;
 
 const client = createWsClient({
   role: 'player',
@@ -17,13 +18,16 @@ function render(state) {
 
 function renderTeamPicker(state) {
   const root = document.getElementById('root');
+  const existingName = document.getElementById('player-name');
+  const preservedName = existingName ? existingName.value : '';
+
   if (!state.teams.length) {
     root.innerHTML = '<p>Waiting for host to set up teams...</p>';
     return;
   }
   root.innerHTML = `
     <h1>Pick your team</h1>
-    <input type="text" id="player-name" placeholder="Your name" />
+    <input type="text" id="player-name" placeholder="Your name" value="${preservedName}" />
     ${state.teams.map((t) => `<button class="team-pick" data-team="${t.id}">${t.name}</button>`).join('')}
   `;
   root.querySelectorAll('.team-pick').forEach((btn) => {
@@ -53,8 +57,9 @@ function renderBuzzer(state) {
 function showFeedback(reason) {
   const el = document.getElementById('feedback');
   if (!el) return;
-  el.textContent = reason === 'too_late' ? 'Too late!' : 'Already tried!';
-  setTimeout(() => { if (el) el.textContent = ''; }, 1000);
+  el.textContent = reason === 'not_open' ? 'Question not open yet!' : 'Too late!';
+  clearTimeout(feedbackTimer);
+  feedbackTimer = setTimeout(() => { if (el) el.textContent = ''; }, 1000);
 }
 
 document.addEventListener('ws-disconnected', () => {

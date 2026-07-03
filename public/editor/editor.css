@@ -1,0 +1,7 @@
+body { font-family: sans-serif; margin: 2rem; }
+.grid { display: flex; gap: 1rem; }
+.column { display: flex; flex-direction: column; gap: 0.5rem; width: 150px; }
+.category-name { font-weight: bold; }
+.cell { padding: 1rem; cursor: pointer; }
+#question-modal { position: fixed; top: 10%; left: 10%; right: 10%; background: white; border: 2px solid black; padding: 1rem; }
+#question-modal textarea { width: 100%; height: 4rem; display: block; margin-bottom: 0.5rem; }

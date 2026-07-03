@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head><title>Jeopardy Editor</title></head>
-<body><div id="root">Editor placeholder</div></body>
+<head>
+  <title>Jeopardy Editor</title>
+  <link rel="stylesheet" href="editor.css" />
+</head>
+<body>
+  <h1>Game Editor</h1>
+  <div class="new-game">
+    <input type="text" id="new-game-name" placeholder="Game name" />
+    <input type="number" id="new-game-categories" placeholder="# categories" value="5" />
+    <input type="number" id="new-game-questions" placeholder="# questions per category" value="5" />
+    <button id="create-game-btn">Create Game</button>
+  </div>
+  <div id="games-list"></div>
+  <div id="editor-grid"></div>
+  <div id="question-modal" style="display:none;"></div>
+  <script src="editor.js"></script>
+</body>
 </html>

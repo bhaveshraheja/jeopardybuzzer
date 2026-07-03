@@ -156,7 +156,8 @@ function renderQuestionPanel(state) {
   `;
 
   const shouldFreeze = Boolean(state.buzzWinner) || state.phase === 'answer';
-  renderTimerFor('host-timer', questionStartedAt, shouldFreeze);
+  const freezeKey = `${questionStartedAt}:${state.buzzWinner || 'none'}`;
+  renderTimerFor('host-timer', questionStartedAt, shouldFreeze, freezeKey);
 }
 
 function renderSidebarAnswer(state) {
@@ -192,16 +193,16 @@ function setTimerDisplay(el, seconds) {
   el.classList.toggle('late', seconds > 15);
 }
 
-function renderTimerFor(elementId, startedAt, shouldFreeze) {
+function renderTimerFor(elementId, startedAt, shouldFreeze, freezeKey) {
   clearInterval(timerInterval);
   const el = document.getElementById(elementId);
   if (!el) return;
 
   if (shouldFreeze) {
-    if (frozenElapsed[startedAt] === undefined) {
-      frozenElapsed[startedAt] = Math.floor((Date.now() - startedAt) / 1000);
+    if (frozenElapsed[freezeKey] === undefined) {
+      frozenElapsed[freezeKey] = Math.floor((Date.now() - startedAt) / 1000);
     }
-    setTimerDisplay(el, frozenElapsed[startedAt]);
+    setTimerDisplay(el, frozenElapsed[freezeKey]);
     return;
   }
 

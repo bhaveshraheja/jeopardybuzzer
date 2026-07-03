@@ -52,7 +52,7 @@ app.post('/api/games/:id/images', upload.single('image'), (req, res) => {
     res.json({ path: null });
     return;
   }
-  const filename = `${Date.now()}-${req.file.originalname}`;
+  const filename = `${Date.now()}-${path.basename(req.file.originalname)}`;
   const relativePath = gameStore.saveImage(req.params.id, filename, req.file.buffer);
   res.json({ path: relativePath });
 });

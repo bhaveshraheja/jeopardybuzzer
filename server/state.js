@@ -47,13 +47,17 @@ function slugifyTeamId(name) {
 }
 
 function setupTeams(teamConfigs) {
-  state.teams = teamConfigs.map(({ name, bulbId }) => ({
-    id: slugifyTeamId(name),
-    name,
-    members: [],
-    score: 0,
-    bulbId
-  }));
+  const previousTeams = state.teams;
+  state.teams = teamConfigs.map(({ name, bulbId }) => {
+    const existing = previousTeams.find((t) => t.name === name);
+    return {
+      id: existing ? existing.id : slugifyTeamId(name),
+      name,
+      members: existing ? existing.members : [],
+      score: existing ? existing.score : 0,
+      bulbId
+    };
+  });
   state.teams.forEach((team) => {
     const bulb = getBulb(team.bulbId);
     if (bulb) wiz.warmWhite(bulb);
@@ -158,6 +162,7 @@ function markAnswered() {
 }
 
 function revealAnswer() {
+  if (!state.currentQuestion) return state;
   markAnswered();
   state.phase = 'answer';
   state.buzzWinner = null;

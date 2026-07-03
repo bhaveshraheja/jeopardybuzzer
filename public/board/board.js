@@ -16,7 +16,7 @@ function render(state) {
   let bodyHtml;
   if (state.phase === 'intro') {
     bodyHtml = renderIntro(state);
-  } else if (state.phase === 'question' || state.phase === 'answer') {
+  } else if ((state.phase === 'question' || state.phase === 'answer') && state.currentQuestion) {
     bodyHtml = renderQuestion(state);
   } else {
     bodyHtml = renderGrid(state);
@@ -24,9 +24,10 @@ function render(state) {
 
   root.innerHTML = bodyHtml + renderScores(state);
 
-  if (state.phase === 'question' || state.phase === 'answer') {
+  if ((state.phase === 'question' || state.phase === 'answer') && state.currentQuestion) {
     const shouldFreeze = Boolean(state.buzzWinner) || state.phase === 'answer';
-    renderTimerFor(state.currentQuestion.questionStartedAt, shouldFreeze);
+    const freezeKey = `${state.currentQuestion.questionStartedAt}:${state.buzzWinner || 'none'}`;
+    renderTimerFor(state.currentQuestion.questionStartedAt, shouldFreeze, freezeKey);
   } else {
     clearInterval(timerInterval);
   }
@@ -78,16 +79,16 @@ function setTimerDisplay(el, seconds) {
   el.classList.toggle('late', seconds > 15);
 }
 
-function renderTimerFor(startedAt, shouldFreeze) {
+function renderTimerFor(startedAt, shouldFreeze, freezeKey) {
   clearInterval(timerInterval);
   const el = document.getElementById('timer');
   if (!el) return;
 
   if (shouldFreeze) {
-    if (frozenElapsed[startedAt] === undefined) {
-      frozenElapsed[startedAt] = Math.floor((Date.now() - startedAt) / 1000);
+    if (frozenElapsed[freezeKey] === undefined) {
+      frozenElapsed[freezeKey] = Math.floor((Date.now() - startedAt) / 1000);
     }
-    setTimerDisplay(el, frozenElapsed[startedAt]);
+    setTimerDisplay(el, frozenElapsed[freezeKey]);
     return;
   }
 

@@ -11,6 +11,15 @@ function gameDir(slug) {
   return path.join(GAMES_DIR, slug);
 }
 
+function uniqueSlug(name) {
+  const base = slugify(name);
+  let slug;
+  do {
+    slug = `${base}-${Math.floor(100 + Math.random() * 900)}`;
+  } while (fs.existsSync(gameDir(slug)));
+  return slug;
+}
+
 function listGames() {
   if (!fs.existsSync(GAMES_DIR)) return [];
   return fs.readdirSync(GAMES_DIR)
@@ -24,7 +33,7 @@ function readGame(slug) {
 }
 
 function createGame({ name, categoryCount, questionCount }) {
-  const slug = slugify(name);
+  const slug = uniqueSlug(name);
   fs.mkdirSync(path.join(gameDir(slug), 'images'), { recursive: true });
 
   const categories = Array.from({ length: categoryCount }, (_, i) => ({
@@ -54,4 +63,4 @@ function saveImage(slug, filename, buffer) {
   return `images/${filename}`;
 }
 
-module.exports = { slugify, listGames, readGame, createGame, writeGame, saveImage };
+module.exports = { slugify, uniqueSlug, listGames, readGame, createGame, writeGame, saveImage };

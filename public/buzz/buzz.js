@@ -8,6 +8,14 @@ const client = createWsClient({
   onBuzzRejected: (reason) => showFeedback(reason)
 });
 
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function render(state) {
   if (!myTeamId) {
     renderTeamPicker(state);
@@ -27,7 +35,7 @@ function renderTeamPicker(state) {
   }
   root.innerHTML = `
     <h1>Pick your team</h1>
-    <input type="text" id="player-name" placeholder="Your name" value="${preservedName}" />
+    <input type="text" id="player-name" placeholder="Your name" value="${escapeHtml(preservedName)}" />
     ${state.teams.map((t) => `<button class="team-pick" data-team="${t.id}">${t.name}</button>`).join('')}
   `;
   root.querySelectorAll('.team-pick').forEach((btn) => {
@@ -57,7 +65,7 @@ function renderBuzzer(state) {
 function showFeedback(reason) {
   const el = document.getElementById('feedback');
   if (!el) return;
-  el.textContent = reason === 'not_open' ? 'Question not open yet!' : 'Too late!';
+  el.textContent = reason === 'not_open' ? 'Question not open yet!' : 'Already tried!';
   clearTimeout(feedbackTimer);
   feedbackTimer = setTimeout(() => { if (el) el.textContent = ''; }, 1000);
 }

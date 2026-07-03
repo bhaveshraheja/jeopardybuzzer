@@ -100,6 +100,9 @@ function attach(wss) {
       } catch (e) {
         return;
       }
+      if (typeof msg !== 'object' || msg === null) {
+        return;
+      }
       handleMessage(ws, msg, wss);
     });
   });

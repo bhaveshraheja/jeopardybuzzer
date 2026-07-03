@@ -1,0 +1,6 @@
+body { font-family: sans-serif; margin: 1rem; }
+.column { display: inline-flex; flex-direction: column; gap: 0.5rem; margin-right: 1rem; }
+.cell { padding: 1rem; }
+.cell:disabled { opacity: 0.3; }
+.timer.late { color: red; font-weight: bold; }
+.team-row { margin-bottom: 0.5rem; }

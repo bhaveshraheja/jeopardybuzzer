@@ -1,5 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head><title>Jeopardy Host</title></head>
-<body><div id="root">Host placeholder</div></body>
+<head>
+  <title>Jeopardy Host</title>
+  <link rel="stylesheet" href="host.css" />
+</head>
+<body>
+  <h1>Host Panel</h1>
+
+  <section id="setup-section">
+    <select id="game-select"></select>
+    <button id="load-game-btn">Load Game</button>
+    <div id="teams-setup"></div>
+    <button id="add-team-btn">Add Team</button>
+    <button id="save-teams-btn">Save Teams</button>
+  </section>
+
+  <section id="intro-controls">
+    <button id="start-intro-btn">Start Category Intro</button>
+    <button id="next-category-btn">Next Category</button>
+    <button id="end-intro-btn">End Intro / Show Board</button>
+  </section>
+
+  <div id="board-grid"></div>
+  <div id="question-panel"></div>
+  <div id="team-scores"></div>
+
+  <section id="question-controls">
+    <button id="reveal-answer-btn">Reveal Answer</button>
+    <button id="close-question-btn">Close Question</button>
+    <button id="reset-buzzer-btn">Reset Buzzer</button>
+  </section>
+
+  <script src="/shared/ws-client.js"></script>
+  <script src="host.js"></script>
+</body>
 </html>

@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head><title>Jeopardy Buzz</title></head>
-<body><div id="root">Buzz placeholder</div></body>
+<head>
+  <title>Jeopardy Buzz</title>
+  <link rel="stylesheet" href="buzz.css" />
+</head>
+<body>
+  <div id="disconnect-banner" style="display:none;">Disconnected — reconnecting...</div>
+  <div id="root"></div>
+  <script src="/shared/ws-client.js"></script>
+  <script src="buzz.js"></script>
+</body>
 </html>

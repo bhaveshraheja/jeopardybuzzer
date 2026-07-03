@@ -179,7 +179,7 @@ Teams are assigned a `bulbId` from this list on the host panel's team-setup scre
 
 Server sends warm-white to all configured bulbs on startup and on host reset; sends red to just the winning team's bulb on buzz.
 
-**Bulb health (best-effort):** Wiz bulbs reply to `setPilot` over UDP (e.g. `{"result":{"success":true}}`), but this isn't a reliable delivery guarantee (the reply itself can be lost). Server tracks the last ~10 commands sent per bulb and whether a reply arrived within ~500ms; if fewer than half acked, the bulb is marked `unreachable` in session state and a small status dot shows next to the team on the host panel — a quiet signal, not a blocking error. This is a heuristic, not authoritative; combined with the manual "Test Bulb" button, it gives the host a way to check bulb health without waiting for a real buzz. No handling beyond this — a genuinely unreachable bulb just doesn't light up, no error shown to players.
+**Bulb health (best-effort, revised during implementation):** Commands are pure fire-and-forget UDP — no ack-tracking or reachability heuristic. An earlier version of this design tracked replies to `setPilot` and flagged a bulb "unreachable" after enough misses, but that heuristic had real bugs (a memory leak for a genuinely offline bulb, and incorrect reply-matching under concurrent commands) and was dropped rather than fixed. There is no bulb-health status anywhere in the app. The manual "Test Bulb" button remains the host's only way to check a bulb works, by watching for the flash. A genuinely unreachable bulb just doesn't light up — no error or indicator shown anywhere.
 
 ---
 
@@ -202,7 +202,7 @@ jeopardybuzzer/
 │   ├── index.js              # Express + ws bootstrap
 │   ├── state.js              # in-memory SessionState + transitions
 │   ├── wsHandlers.js          # client -> server message handling
-│   ├── wiz.js                 # UDP bulb commands + ack tracking
+│   ├── wiz.js                 # UDP bulb commands (fire-and-forget)
 │   ├── sound.js               # afplay wrapper
 │   └── gameStore.js           # read/write game JSON + image uploads
 ├── public/
@@ -237,7 +237,7 @@ jeopardybuzzer/
 ## Section 8: Error Handling
 
 - **Late/duplicate buzzes** — handled via `buzz_rejected` (`too_late` / `already_tried`); see Section 4.
-- **Bulb offline/unreachable** — best-effort; see Section 5's ack-tracking heuristic and "Test Bulb" button. No warning is shown to players; the host gets a quiet status dot at most.
+- **Bulb offline/unreachable** — best-effort, fire-and-forget; see Section 5. No warning is shown anywhere — the host's only tool is the manual "Test Bulb" button.
 - **Disconnected players** — client-side auto-reconnect (Section 4); the `/buzz` page shows its own "Disconnected — reconnecting..." banner based on its own socket state. The host panel does not track or display per-player connection status.
 
 ---

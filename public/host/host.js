@@ -3,6 +3,8 @@ let currentState = null;
 let uiMode = 'setup';
 let selectedGameId = null;
 let seenFirstState = false;
+let timerInterval;
+let frozenElapsed = {};
 
 const client = createWsClient({
   role: 'host',
@@ -111,6 +113,7 @@ function render(state) {
   if (!state) return;
   renderBoardGrid(state);
   renderQuestionPanel(state);
+  renderSidebarAnswer(state);
   renderTeamScores(state);
 }
 
@@ -134,7 +137,6 @@ function renderBoardGrid(state) {
   });
 }
 
-let timerInterval;
 function renderQuestionPanel(state) {
   const root = document.getElementById('question-panel');
   if (!state.currentQuestion) {
@@ -151,6 +153,24 @@ function renderQuestionPanel(state) {
     <div class="a-text">Answer: ${question.answer}</div>
     <div class="timer" id="host-timer">0s</div>
     <div class="buzz-winner">${state.buzzWinner ? teamName(state, state.buzzWinner) : 'No buzz yet'}</div>
+  `;
+
+  const shouldFreeze = Boolean(state.buzzWinner) || state.phase === 'answer';
+  renderTimerFor('host-timer', questionStartedAt, shouldFreeze);
+}
+
+function renderSidebarAnswer(state) {
+  const root = document.getElementById('sidebar-answer');
+  if (!state.currentQuestion) {
+    root.innerHTML = '<p style="color:#8a8da8; font-size:0.85rem;">No question selected.</p>';
+    return;
+  }
+  const { categoryIdx, questionIdx } = state.currentQuestion;
+  const question = state.game.categories[categoryIdx].questions[questionIdx];
+
+  root.innerHTML = `
+    <div class="a-text">${question.answer}</div>
+    <div class="buzz-winner">${state.buzzWinner ? teamName(state, state.buzzWinner) : 'No buzz yet'}</div>
     <div class="team-buttons">
       ${state.teams.map((t) => `
         <span>
@@ -165,14 +185,31 @@ function renderQuestionPanel(state) {
     btn.addEventListener('click', () => client.send('mark_correct', { teamId: btn.dataset.team })));
   root.querySelectorAll('.wrong-btn').forEach((btn) =>
     btn.addEventListener('click', () => client.send('mark_wrong', { teamId: btn.dataset.team })));
+}
 
+function setTimerDisplay(el, seconds) {
+  el.textContent = `${seconds}s`;
+  el.classList.toggle('late', seconds > 15);
+}
+
+function renderTimerFor(elementId, startedAt, shouldFreeze) {
   clearInterval(timerInterval);
+  const el = document.getElementById(elementId);
+  if (!el) return;
+
+  if (shouldFreeze) {
+    if (frozenElapsed[startedAt] === undefined) {
+      frozenElapsed[startedAt] = Math.floor((Date.now() - startedAt) / 1000);
+    }
+    setTimerDisplay(el, frozenElapsed[startedAt]);
+    return;
+  }
+
+  setTimerDisplay(el, Math.floor((Date.now() - startedAt) / 1000));
   timerInterval = setInterval(() => {
-    const el = document.getElementById('host-timer');
-    if (!el) { clearInterval(timerInterval); return; }
-    const seconds = Math.floor((Date.now() - questionStartedAt) / 1000);
-    el.textContent = `${seconds}s`;
-    el.classList.toggle('late', seconds > 15);
+    const liveEl = document.getElementById(elementId);
+    if (!liveEl) { clearInterval(timerInterval); return; }
+    setTimerDisplay(liveEl, Math.floor((Date.now() - startedAt) / 1000));
   }, 250);
 }
 

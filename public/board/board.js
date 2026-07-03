@@ -1,4 +1,5 @@
 let timerInterval;
+let frozenElapsed = {};
 
 const client = createWsClient({
   role: 'board',
@@ -24,7 +25,8 @@ function render(state) {
   root.innerHTML = bodyHtml + renderScores(state);
 
   if (state.phase === 'question' || state.phase === 'answer') {
-    startTimerTick(state.currentQuestion.questionStartedAt);
+    const shouldFreeze = Boolean(state.buzzWinner) || state.phase === 'answer';
+    renderTimerFor(state.currentQuestion.questionStartedAt, shouldFreeze);
   } else {
     clearInterval(timerInterval);
   }
@@ -71,14 +73,29 @@ function renderQuestion(state) {
   return html;
 }
 
-function startTimerTick(startedAt) {
+function setTimerDisplay(el, seconds) {
+  el.textContent = `${seconds}s`;
+  el.classList.toggle('late', seconds > 15);
+}
+
+function renderTimerFor(startedAt, shouldFreeze) {
   clearInterval(timerInterval);
+  const el = document.getElementById('timer');
+  if (!el) return;
+
+  if (shouldFreeze) {
+    if (frozenElapsed[startedAt] === undefined) {
+      frozenElapsed[startedAt] = Math.floor((Date.now() - startedAt) / 1000);
+    }
+    setTimerDisplay(el, frozenElapsed[startedAt]);
+    return;
+  }
+
+  setTimerDisplay(el, Math.floor((Date.now() - startedAt) / 1000));
   timerInterval = setInterval(() => {
-    const el = document.getElementById('timer');
-    if (!el) { clearInterval(timerInterval); return; }
-    const seconds = Math.floor((Date.now() - startedAt) / 1000);
-    el.textContent = `${seconds}s`;
-    el.classList.toggle('late', seconds > 15);
+    const liveEl = document.getElementById('timer');
+    if (!liveEl) { clearInterval(timerInterval); return; }
+    setTimerDisplay(liveEl, Math.floor((Date.now() - startedAt) / 1000));
   }, 250);
 }
 

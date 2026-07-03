@@ -86,6 +86,8 @@ function startIntro() {
 function nextCategory() {
   if (state.introCategoryIdx < state.game.categories.length - 1) {
     state.introCategoryIdx += 1;
+  } else {
+    state.phase = 'board';
   }
   return state;
 }

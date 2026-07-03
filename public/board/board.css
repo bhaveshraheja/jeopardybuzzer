@@ -1,0 +1,13 @@
+body { font-family: sans-serif; margin: 0; background: black; color: white; height: 100vh; }
+.grid { display: flex; justify-content: center; gap: 1rem; padding-top: 2rem; }
+.column { display: flex; flex-direction: column; gap: 1rem; width: 15vw; }
+.header { font-weight: bold; text-align: center; font-size: 1.5rem; }
+.cell { background: darkblue; padding: 2rem; text-align: center; font-size: 2rem; }
+.cell.answered { background: #111; color: #111; }
+.question { text-align: center; padding-top: 5rem; font-size: 3rem; }
+.answer { color: gold; margin-top: 2rem; }
+.winner { font-size: 4rem; color: red; margin-top: 2rem; }
+.timer { font-size: 2rem; margin-top: 2rem; }
+.timer.late { color: red; }
+.scores { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: center; gap: 2rem; padding: 1rem; background: #222; font-size: 1.5rem; }
+.intro { text-align: center; padding-top: 20vh; font-size: 4rem; }

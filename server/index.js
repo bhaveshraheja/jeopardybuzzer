@@ -3,6 +3,9 @@ const http = require('http');
 const path = require('path');
 const multer = require('multer');
 const gameStore = require('./gameStore');
+const { WebSocketServer } = require('ws');
+const state = require('./state');
+const wsHandlers = require('./wsHandlers');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -55,6 +58,9 @@ app.post('/api/games/:id/images', upload.single('image'), (req, res) => {
 });
 
 const server = http.createServer(app);
+const wss = new WebSocketServer({ server, path: '/ws' });
+wsHandlers.attach(wss);
+state.loadBulbs(require('../bulbs.json'));
 
 server.listen(PORT, () => {
   console.log(`Jeopardy buzzer server running at http://localhost:${PORT}`);

@@ -1,0 +1,41 @@
+{
+  "id": "movie-night",
+  "name": "Movie Night",
+  "createdAt": "2026-07-03T00:00:00Z",
+  "categories": [
+    {
+      "name": "90s Films",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Q1",
+          "answer": "A1",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "",
+          "answer": "",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "Cat2",
+      "questions": [
+        {
+          "value": 100,
+          "question": "",
+          "answer": "",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "",
+          "answer": "",
+          "image": null
+        }
+      ]
+    }
+  ]
+}

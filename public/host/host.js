@@ -9,7 +9,13 @@ const client = createWsClient({
   }
 });
 
-fetch('/api/bulbs').then((r) => r.json()).then((data) => { bulbs = data; });
+const addTeamBtn = document.getElementById('add-team-btn');
+addTeamBtn.disabled = true;
+
+fetch('/api/bulbs').then((r) => r.json()).then((data) => {
+  bulbs = data;
+  addTeamBtn.disabled = false;
+});
 
 async function loadGamesList() {
   const games = await fetch('/api/games').then((r) => r.json());

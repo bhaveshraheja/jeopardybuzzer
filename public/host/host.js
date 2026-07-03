@@ -1,10 +1,20 @@
 let bulbs = [];
 let currentState = null;
+let uiMode = 'setup';
+let selectedGameId = null;
+let seenFirstState = false;
 
 const client = createWsClient({
   role: 'host',
   onState: (state) => {
     currentState = state;
+    if (!seenFirstState) {
+      seenFirstState = true;
+      if (state.game && state.teams.length) {
+        uiMode = 'play';
+        selectedGameId = state.gameId;
+      }
+    }
     render(state);
   }
 });
@@ -19,25 +29,37 @@ fetch('/api/bulbs').then((r) => r.json()).then((data) => {
 
 async function loadGamesList() {
   const games = await fetch('/api/games').then((r) => r.json());
-  const select = document.getElementById('game-select');
-  select.innerHTML = games.map((g) => `<option value="${g.id}">${g.name}</option>`).join('');
+  const list = document.getElementById('games-list');
+  list.innerHTML = games.map((g) => `<button class="game-card" data-id="${g.id}">${g.name}</button>`).join('');
+  list.querySelectorAll('.game-card').forEach((btn) => {
+    btn.addEventListener('click', () => selectGame(btn.dataset.id));
+  });
+  highlightSelectedGame();
 }
 loadGamesList();
 
-document.getElementById('load-game-btn').addEventListener('click', () => {
-  const gameId = document.getElementById('game-select').value;
+function highlightSelectedGame() {
+  document.querySelectorAll('.game-card').forEach((btn) => {
+    btn.classList.toggle('selected', btn.dataset.id === selectedGameId);
+  });
+}
+
+function selectGame(gameId) {
+  selectedGameId = gameId;
   client.send('load_game', { gameId });
-});
+  document.getElementById('team-setup-block').style.display = 'block';
+  highlightSelectedGame();
+}
 
-document.getElementById('add-team-btn').addEventListener('click', addTeamRow);
+document.getElementById('add-team-btn').addEventListener('click', () => addTeamRow());
 
-function addTeamRow() {
+function addTeamRow(prefillName, prefillBulbId) {
   const container = document.getElementById('teams-setup');
   const row = document.createElement('div');
   row.className = 'team-row';
   row.innerHTML = `
-    <input type="text" class="team-name" placeholder="Team name" />
-    <select class="team-bulb">${bulbs.map((b) => `<option value="${b.id}">${b.id}</option>`).join('')}</select>
+    <input type="text" class="team-name" placeholder="Team name" value="${prefillName || ''}" />
+    <select class="team-bulb">${bulbs.map((b) => `<option value="${b.id}" ${b.id === prefillBulbId ? 'selected' : ''}>${b.id}</option>`).join('')}</select>
     <button type="button" class="test-bulb-btn">Test Bulb</button>
   `;
   row.querySelector('.test-bulb-btn').addEventListener('click', () => {
@@ -46,7 +68,7 @@ function addTeamRow() {
   container.appendChild(row);
 }
 
-document.getElementById('save-teams-btn').addEventListener('click', () => {
+document.getElementById('start-game-btn').addEventListener('click', () => {
   const rows = document.querySelectorAll('.team-row');
   const teams = Array.from(rows)
     .map((row) => ({
@@ -54,7 +76,26 @@ document.getElementById('save-teams-btn').addEventListener('click', () => {
       bulbId: row.querySelector('.team-bulb').value
     }))
     .filter((t) => t.name);
-  client.send('setup_teams', { teams });
+  if (teams.length) {
+    client.send('setup_teams', { teams });
+  }
+  uiMode = 'play';
+  render(currentState);
+});
+
+document.getElementById('settings-btn').addEventListener('click', () => {
+  uiMode = 'setup';
+  const container = document.getElementById('teams-setup');
+  container.innerHTML = '';
+  if (currentState && currentState.teams.length) {
+    currentState.teams.forEach((t) => addTeamRow(t.name, t.bulbId));
+    document.getElementById('team-setup-block').style.display = 'block';
+  }
+  if (currentState && currentState.gameId) {
+    selectedGameId = currentState.gameId;
+  }
+  highlightSelectedGame();
+  render(currentState);
 });
 
 document.getElementById('start-intro-btn').addEventListener('click', () => client.send('start_intro'));
@@ -65,6 +106,9 @@ document.getElementById('close-question-btn').addEventListener('click', () => cl
 document.getElementById('reveal-answer-btn').addEventListener('click', () => client.send('reveal_answer'));
 
 function render(state) {
+  document.getElementById('setup-overlay').style.display = uiMode === 'setup' ? 'flex' : 'none';
+  document.querySelector('.layout').style.display = uiMode === 'play' ? 'flex' : 'none';
+  if (!state) return;
   renderBoardGrid(state);
   renderQuestionPanel(state);
   renderTeamScores(state);

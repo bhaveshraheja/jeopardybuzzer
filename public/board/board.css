@@ -1,7 +1,7 @@
 html, body { height: 100%; margin: 0; }
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #060716;
+  background: #01010a;
   color: white;
   overflow: hidden;
 }
@@ -22,18 +22,15 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #0a1657;
-  color: #ffcc33;
+  background: #0f1e8c;
+  color: white;
   font-weight: 700;
   font-size: 1.15rem;
-  line-height: 1.25;
-  padding: 0.4rem 0.6rem;
+  line-height: 1.3;
+  padding: 0.5rem 0.6rem;
   border-radius: 0.4rem;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  min-height: 3.2rem;
+  word-break: break-word;
 }
 
 .cell {
@@ -43,15 +40,16 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: clamp(1.3rem, 4vw, 3rem);
+  font-size: clamp(1rem, 2.4vw, 1.9rem);
   color: #ffcc33;
 }
 
 .cell.answered {
-  background: #0c0c1a;
+  background: #060616;
 }
 
 .view {
+  position: relative;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -63,6 +61,41 @@ body {
   box-sizing: border-box;
   gap: 1.5rem;
 }
+
+.question-meta {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.meta-category {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+.meta-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffcc33;
+  background: #0f1e8c;
+  padding: 0.15rem 0.7rem;
+  border-radius: 0.3rem;
+}
+
+.timer-corner {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.75rem;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  color: #9aa0c0;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.3rem 0.9rem;
+  border-radius: 0.3rem;
+}
+.timer-corner.late { color: #ff3b3b; font-weight: 700; }
 
 .view .text {
   font-size: clamp(1.6rem, 3.6vw, 3rem);
@@ -88,14 +121,6 @@ body {
   color: #ff3b3b;
 }
 
-.timer {
-  font-size: 1.6rem;
-  font-variant-numeric: tabular-nums;
-  color: #9aa0c0;
-}
-
-.timer.late { color: #ff3b3b; font-weight: 700; }
-
 .intro {
   flex: 1;
   display: flex;
@@ -104,6 +129,10 @@ body {
   text-align: center;
   font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 800;
+  color: white;
+  background: #0f1e8c;
+  margin: 0.6rem;
+  border-radius: 0.6rem;
   padding: 2rem 4rem;
   box-sizing: border-box;
 }
@@ -124,8 +153,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  background: #0a0a1a;
+  background: #060616;
   font-size: 1.3rem;
   font-weight: 600;
-  border-top: 1px solid #23244a;
+  border-top: 1px solid #1a1a3a;
 }

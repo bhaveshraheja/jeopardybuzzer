@@ -38,7 +38,7 @@ function renderIntro(state) {
 function renderGrid(state) {
   const numCols = state.game.categories.length;
   const numRows = state.game.categories[0].questions.length;
-  let html = `<div class="grid" style="grid-template-columns: repeat(${numCols}, 1fr); grid-template-rows: 4.5rem repeat(${numRows}, 1fr);">`;
+  let html = `<div class="grid" style="grid-template-columns: repeat(${numCols}, 1fr); grid-template-rows: auto repeat(${numRows}, 1fr);">`;
   state.game.categories.forEach((category, cIdx) => {
     html += `<div class="header" style="grid-column:${cIdx + 1}; grid-row:1;">${category.name}</div>`;
   });
@@ -54,17 +54,19 @@ function renderGrid(state) {
 
 function renderQuestion(state) {
   const { categoryIdx, questionIdx } = state.currentQuestion;
-  const question = state.game.categories[categoryIdx].questions[questionIdx];
+  const category = state.game.categories[categoryIdx];
+  const question = category.questions[questionIdx];
   const winnerTeam = state.teams.find((t) => t.id === state.buzzWinner);
 
   let html = '<div class="view">';
+  html += `<div class="question-meta"><span class="meta-category">${category.name}</span><span class="meta-value">${question.value}</span></div>`;
+  html += `<div class="timer-corner" id="timer">0s</div>`;
   html += `<div class="text">${question.question}</div>`;
   if (question.image) html += `<img src="/games/${state.gameId}/${question.image}" />`;
   if (state.phase === 'answer' && question.answer) {
     html += `<div class="answer">${question.answer}</div>`;
   }
   if (winnerTeam) html += `<div class="winner">${winnerTeam.name}</div>`;
-  html += `<div class="timer" id="timer">0s</div>`;
   html += '</div>';
   return html;
 }

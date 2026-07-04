@@ -32,6 +32,17 @@ Tip: set a DHCP reservation for each bulb in your router so the IP doesn't
 change later. The server reads this file once at startup — restart it after
 editing `bulbs.json`.
 
+Copy `wifi.json.example` to `wifi.json` and fill in your real network name
+and password — this powers the join-QR-codes screen (see
+[QR codes for joining](#qr-codes-for-joining)). `wifi.json` is git-ignored
+since your WiFi password is more sensitive than the bulb IPs; don't remove it
+from `.gitignore`.
+
+```bash
+cp wifi.json.example wifi.json
+# then edit wifi.json with your real ssid/password
+```
+
 ## Running
 
 ```bash
@@ -70,8 +81,9 @@ Then share `http://<that-ip>:3000/<page>` with everyone on the same Wi-Fi.
    names, assign each a bulb, hit **Test Bulb** to confirm it lights up, then
    **Start Game**.
 4. Project/cast `/board` onto the TV.
-5. Share the `/buzz` URL (a QR code pointing at it works well) so players can
-   join a team and buzz in from their own phones.
+5. On `/host`, click **Show QR Codes** — the board switches to a two-step
+   join screen (scan to join WiFi, then scan to join `/buzz`) that players can
+   scan straight off the TV. Click it again to hide and return to the game.
 6. Run the category intro (**Start** → **Next** → auto-advances to the board
    after the last one), then click cells to reveal questions. Use the
    **Answer & Buzz** panel in the host sidebar to mark Correct/Wrong without
@@ -94,11 +106,23 @@ light up. Sound and gameplay work fine regardless.
 
 ## Sounds
 
-`sounds/buzz.mp3`, `sounds/miss.mp3`, and `sounds/reset.mp3` are currently
-placeholder (silent) files. Replace them with real short sound clips of the
-same names to get audio feedback on buzz, missed buzz, and buzzer reset.
-Audio plays from the Mac's speakers — if the Mac is connected to the TV via
-AirPlay, sound comes through the TV too.
+`sounds/buzz.mp3`, `sounds/miss.mp3`, and `sounds/reset.mp3` play on buzz,
+missed buzz, and buzzer reset respectively — replace them with your own
+clips (same filenames) any time. Audio plays from the Mac's speakers — if
+the Mac is connected to the TV via AirPlay, sound comes through the TV too.
+
+## QR codes for joining
+
+Once `wifi.json` is set up, clicking **Show QR Codes** on `/host` puts up a
+two-step join screen on `/board`:
+
+1. **Join WiFi** — a standard WiFi QR code (scannable by any phone camera,
+   no app needed) plus the network name/password as plain text for manual
+   entry.
+2. **Join the Game** — a QR code pointing at `/buzz` on your Mac's LAN IP
+   (auto-detected), plus the URL as text.
+
+Toggle it off from the same button to go back to the game.
 
 ## Notes
 

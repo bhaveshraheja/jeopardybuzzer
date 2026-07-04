@@ -22,7 +22,8 @@ function createEmptyState() {
     introCategoryIdx: 0,
     currentQuestion: null,
     buzzWinner: null,
-    answeredBy: []
+    answeredBy: [],
+    showQr: false
   };
 }
 
@@ -78,6 +79,11 @@ function testBulb(bulbId) {
   if (!bulb) return state;
   wiz.testFlash(bulb);
   setTimeout(() => wiz.warmWhite(bulb), 1000);
+  return state;
+}
+
+function toggleQr() {
+  state.showQr = !state.showQr;
   return state;
 }
 
@@ -192,5 +198,6 @@ function resetBuzzer() {
 module.exports = {
   loadBulbs, getState, loadGame, setupTeams, joinTeam, testBulb,
   startIntro, nextCategory, endIntro, selectQuestion, buzz, rejectBuzz,
-  markCorrect, markWrong, revealAnswer, closeQuestion, resetBuzzer, getCurrentQuestion
+  markCorrect, markWrong, revealAnswer, closeQuestion, resetBuzzer, getCurrentQuestion,
+  toggleQr
 };

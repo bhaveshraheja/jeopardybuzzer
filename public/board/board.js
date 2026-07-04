@@ -1,5 +1,10 @@
 let timerInterval;
 let frozenElapsed = {};
+let wifiInfo = null;
+let buzzUrl = null;
+
+fetch('/api/wifi').then((r) => r.json()).then((data) => { wifiInfo = data; });
+fetch('/api/server-info').then((r) => r.json()).then((data) => { buzzUrl = data.buzzUrl; });
 
 const client = createWsClient({
   role: 'board',
@@ -8,6 +13,13 @@ const client = createWsClient({
 
 function render(state) {
   const root = document.getElementById('root');
+
+  if (state.showQr) {
+    root.innerHTML = renderQrScreen();
+    clearInterval(timerInterval);
+    return;
+  }
+
   if (!state.game) {
     root.innerHTML = '<div class="waiting">Waiting for host to load a game...</div>';
     return;
@@ -31,6 +43,32 @@ function render(state) {
   } else {
     clearInterval(timerInterval);
   }
+}
+
+function escapeWifiField(value) {
+  return String(value).replace(/([\\;,:"])/g, '\\$1');
+}
+
+function renderQrScreen() {
+  const wifiQrUrl = wifiInfo
+    ? `/api/qrcode?data=${encodeURIComponent(`WIFI:T:WPA;S:${escapeWifiField(wifiInfo.ssid)};P:${escapeWifiField(wifiInfo.password)};;`)}`
+    : null;
+  const buzzQrUrl = buzzUrl ? `/api/qrcode?data=${encodeURIComponent(buzzUrl)}` : null;
+
+  return `
+    <div class="qr-screen">
+      <div class="qr-step">
+        <div class="qr-step-label">Step 1 — Join WiFi</div>
+        ${wifiQrUrl ? `<img class="qr-image" src="${wifiQrUrl}" />` : '<p>WiFi not configured</p>'}
+        ${wifiInfo ? `<div class="qr-text">Network: <strong>${wifiInfo.ssid}</strong><br />Password: <strong>${wifiInfo.password}</strong></div>` : ''}
+      </div>
+      <div class="qr-step">
+        <div class="qr-step-label">Step 2 — Join the Game</div>
+        ${buzzQrUrl ? `<img class="qr-image" src="${buzzQrUrl}" />` : '<p>Loading...</p>'}
+        ${buzzUrl ? `<div class="qr-text">${buzzUrl}</div>` : ''}
+      </div>
+    </div>
+  `;
 }
 
 function renderIntro(state) {

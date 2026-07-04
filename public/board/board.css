@@ -137,6 +137,47 @@ body {
   box-sizing: border-box;
 }
 
+.qr-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.qr-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  background: #0f1e8c;
+  border-radius: 0.8rem;
+  padding: 2rem 2.5rem;
+}
+
+.qr-step-label {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+}
+
+.qr-image {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 0.4rem;
+  width: min(300px, 30vw);
+  height: auto;
+}
+
+.qr-text {
+  font-size: 1.15rem;
+  color: #ffcc33;
+  line-height: 1.5;
+}
+
 .waiting {
   flex: 1;
   display: flex;

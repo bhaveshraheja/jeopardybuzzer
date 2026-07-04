@@ -1,13 +1,28 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
+const os = require('os');
+const fs = require('fs');
 const multer = require('multer');
+const QRCode = require('qrcode');
 const gameStore = require('./gameStore');
 const { WebSocketServer } = require('ws');
 const state = require('./state');
 const wsHandlers = require('./wsHandlers');
 
 const PORT = process.env.PORT || 3000;
+
+function getLanIp() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return 'localhost';
+}
 const app = express();
 app.use(express.json());
 
@@ -20,6 +35,34 @@ app.use('/games', express.static(path.join(__dirname, '..', 'games')));
 
 app.get('/api/bulbs', (req, res) => {
   res.json(require('../bulbs.json'));
+});
+
+app.get('/api/wifi', (req, res) => {
+  const wifiPath = path.join(__dirname, '..', 'wifi.json');
+  if (!fs.existsSync(wifiPath)) {
+    res.json(null);
+    return;
+  }
+  res.json(JSON.parse(fs.readFileSync(wifiPath, 'utf8')));
+});
+
+app.get('/api/server-info', (req, res) => {
+  res.json({ buzzUrl: `http://${getLanIp()}:${PORT}/buzz` });
+});
+
+app.get('/api/qrcode', async (req, res) => {
+  const data = req.query.data;
+  if (!data) {
+    res.status(400).json({ error: 'missing_data' });
+    return;
+  }
+  try {
+    const buffer = await QRCode.toBuffer(String(data), { type: 'png', width: 300, margin: 1 });
+    res.set('Content-Type', 'image/png');
+    res.send(buffer);
+  } catch (e) {
+    res.status(500).json({ error: 'qrcode_failed' });
+  }
 });
 
 const upload = multer({ storage: multer.memoryStorage() });

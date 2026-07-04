@@ -106,11 +106,13 @@ document.getElementById('end-intro-btn').addEventListener('click', () => client.
 document.getElementById('reset-buzzer-btn').addEventListener('click', () => client.send('reset_buzzer'));
 document.getElementById('close-question-btn').addEventListener('click', () => client.send('close_question'));
 document.getElementById('reveal-answer-btn').addEventListener('click', () => client.send('reveal_answer'));
+document.getElementById('qr-toggle-btn').addEventListener('click', () => client.send('toggle_qr'));
 
 function render(state) {
   document.getElementById('setup-overlay').style.display = uiMode === 'setup' ? 'flex' : 'none';
   document.querySelector('.layout').style.display = uiMode === 'play' ? 'flex' : 'none';
   if (!state) return;
+  document.getElementById('qr-toggle-btn').textContent = state.showQr ? 'Hide QR Codes' : 'Show QR Codes';
   renderBoardGrid(state);
   renderQuestionPanel(state);
   renderSidebarAnswer(state);

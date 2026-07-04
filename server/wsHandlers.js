@@ -82,6 +82,9 @@ function handleMessage(ws, msg, wss) {
     case 'reset_buzzer':
       state.resetBuzzer();
       break;
+    case 'toggle_qr':
+      state.toggleQr();
+      break;
     default:
       return;
   }

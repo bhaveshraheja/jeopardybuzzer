@@ -1,14 +1,83 @@
-body { font-family: sans-serif; margin: 0; text-align: center; box-sizing: border-box; }
-#disconnect-banner { background: darkred; color: white; padding: 0.5rem; }
-.buzz-button { width: 90vw; height: 60vh; font-size: 3rem; margin-top: 2rem; }
-.team-pick { display: block; width: 90vw; margin: 0.5rem auto; padding: 1rem; font-size: 1.5rem; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#disconnect-banner {
+  background: darkred;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.buzz-button {
+  display: block;
+  width: 90vw;
+  height: 60vh;
+  max-width: 500px;
+  margin: 2rem auto;
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(180deg, #ff5555, #cc0000);
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 0 #8a0000, 0 8px 16px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+}
+.buzz-button:active {
+  box-shadow: 0 2px 0 #8a0000, 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+}
+
+.team-pick {
+  display: block;
+  width: 90vw;
+  max-width: 500px;
+  margin: 0.6rem auto;
+  padding: 1.1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  background: #0f1e8c;
+  border: none;
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 0 #081052;
+  cursor: pointer;
+}
+.team-pick:active {
+  box-shadow: 0 1px 0 #081052;
+  transform: translateY(3px);
+}
+
 #player-name {
   display: block;
   width: 90vw;
+  max-width: 500px;
   margin: 1.5rem auto;
   padding: 1rem;
   font-size: 1.3rem;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 0.5rem;
+}
+
+.score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+#feedback {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #d92626;
+  min-height: 2rem;
+  margin-top: 1rem;
 }

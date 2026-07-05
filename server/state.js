@@ -170,8 +170,8 @@ function revealAnswer() {
   if (!state.currentQuestion) return state;
   markAnswered();
   state.phase = 'answer';
-  state.buzzWinner = null;
   state.answeredBy = [];
+  resetBuzzer();
   return state;
 }
 
@@ -179,14 +179,13 @@ function closeQuestion() {
   markAnswered();
   state.phase = 'board';
   state.currentQuestion = null;
-  state.buzzWinner = null;
   state.answeredBy = [];
+  resetBuzzer();
   return state;
 }
 
 function resetBuzzer() {
   state.buzzWinner = null;
-  sound.play('reset');
   state.teams.forEach((team) => {
     const bulb = getBulb(team.bulbId);
     if (bulb) wiz.warmWhite(bulb);

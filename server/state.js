@@ -154,9 +154,8 @@ function markWrong(teamId) {
   if (team && question) team.score -= question.value;
   state.answeredBy.push(teamId);
   resetBuzzer();
-  if (state.answeredBy.length >= state.teams.length) {
-    closeQuestion();
-  }
+  // Even once every team has had a wrong attempt, stay on the question —
+  // don't auto-close. The host decides when to reveal the answer or move on.
   return state;
 }
 

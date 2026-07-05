@@ -1,0 +1,217 @@
+{
+  "id": "cousins-get-together-bollywood-370",
+  "name": "Cousins Get together (Bollywood)",
+  "createdAt": "2026-07-05T01:32:54.947Z",
+  "categories": [
+    {
+      "name": "Tune Maari Entriyaan",
+      "questions": [
+        {
+          "value": 100,
+          "question": "In this timeless classic: He doesn't call ahead, he doesn't ring the bell. He lands a helicopter on the front lawn - and somehow, Maa already knew he was coming!",
+          "answer": "SRK (K3G)",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "Akshay Kumar's character has big dreams, riding a red ferrari and a jeep through a desert, but his reality? He's ironing trousers and manages to burn a hole straight to them",
+          "answer": "Hera Pheri",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "He's cycling down an open road when he runs into a famous actress whose car has broken down \u2014 one thing leads to another, and soon he's marrying her. Then his father snaps him out of it: he's been daydreaming in the family barber shop the whole time.",
+          "answer": "Aamir Khan, Amar (Andaaz Apna Apna)",
+          "image": "images/q1.webp"
+        },
+        {
+          "value": 400,
+          "question": "He arrives in the middle of Rajasthan desert with absolutely nothing to this name, and I mean absolutely nothing, clutching only a transistor radio, utterly bewildered by planet Earth in this movie.",
+          "answer": "PK",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "The crowd's screaming \"Rohit! Rohit!\" and this debutante makes his entry on stage in full-blank singing \"Hey Hey, La La La\" strumming the guitar, before his alarm clocks wakes him up from his dream in this 2000 movie",
+          "answer": "Hrithik Roshan (Kaho Naa Pyaar Hai)",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "Where have I heard this before?",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Kindly furnish a precise quantitative enumeration of the adult male personnel present",
+          "answer": "",
+          "image": "images/q2.jpg"
+        },
+        {
+          "value": 200,
+          "question": "The successful execution of this endeavour lies demonstrably and irrevocably beyond the operational bandwidth of your current capability matrix - oh dear scion of my lineage",
+          "answer": "Gangs of Wasseypur",
+          "image": "images/q3.jpg"
+        },
+        {
+          "value": 300,
+          "question": "In politics of appreciable territorial and geopolitical amplitude, such ostensibly negligible aberrations constitute routine low-salience bureaucratic noise",
+          "answer": "",
+          "image": "images/q4.gif"
+        },
+        {
+          "value": 400,
+          "question": "I am in sole and immediate possession of something of categorically non-transactional value: filial proximity to the singular woman responsible for my ontological inception",
+          "answer": "Mere Paas Ma hai",
+          "image": "images/q5.jpg"
+        },
+        {
+          "value": 500,
+          "question": "O she whose nomenclature is a humble tribute to botanical flora - I harbour an acute and irreconcilable psychosomatic aversion towards the involuntary saline emissions of your ocular cavity",
+          "answer": "",
+          "image": "images/q6.gif"
+        }
+      ]
+    },
+    {
+      "name": "Rang Barse",
+      "questions": [
+        {
+          "value": 100,
+          "question": "In Rang De Basanti, Aamir Khan played as Chandrashekar Azad, and his character name was this?",
+          "answer": "Daljit 'DJ' Singh",
+          "image": "images/q7.jpg"
+        },
+        {
+          "value": 200,
+          "question": "The famous song recreated in 2016 for a Bollywood movie starring Siddharth Malhotra was a Punjabi song from 1991 sung by Amar Arshi, written by Amrik Singh & composed by Prem-Hardeep.",
+          "answer": "Kala Chasma",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "This song from Train picturized on Rajesh Khanna & Nanda song by Mohammed Rafiq alludes to the heart becoming alcholic after seeing ______",
+          "answer": "Gulabi Aankhen",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "In this 2022 Indian remake of an Oscar-winning American classic, the Vietnam War becomes the Kargil War, the shrimp company becomes an innerwear brand called Rupa, and the box of chocolates becomes a box of golgappas.",
+          "answer": "Laal Singh Chadda",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "Made his debut as a child artist in Vijay (1988) & Jaisi Karni Waisi Bharni (1989), this actor has played roles in several movies like Players (2012), Lafangey Parindey(2010) and Golmaal Again (2017)",
+          "answer": "Neil Nitin Mukesh",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "Mere Paas Maa hai",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Being put in a spot in a elocution competition, Anjali cannot speak when she gets the topic \"Maa\". Which actress played the role of her mother in the movie Kuch Kuch Hota Hai?",
+          "answer": "Rani Mukherjee",
+          "image": "images/q8.jpg"
+        },
+        {
+          "value": 200,
+          "question": "Who is the mother in this famous dialogue?",
+          "answer": "Sumitra Devi, played by Nirupa Roy. Deewar (1975)",
+          "image": "images/q9.jpg"
+        },
+        {
+          "value": 300,
+          "question": "__________ : Dilwale Dulhaniya Le Jayenge\nMrs. Khanna : Kuch Kuch Hota Hai\nDaijan/DJ \u00a0 \u00a0 \u00a0: Kabhi Khushi Kabhi Gham\nMother or mother-like Roles played by Farida Jalal in movies",
+          "answer": "Lajjo/ Lajwanti",
+          "image": "images/q10.jpg"
+        },
+        {
+          "value": 400,
+          "question": "Priyanka Chopra played the role of a mother of a teenage daughter, in this movie based off a real life story with Farhan Akhtar",
+          "answer": "Sky is Pink",
+          "image": "images/q11.jpg"
+        },
+        {
+          "value": 500,
+          "question": "In this movie, Esha Deol is in search for her biological mother, played by her real-life biological mother, Hema Malini. Fun fact this was directed, written and produced by Hema Malini",
+          "answer": "",
+          "image": "images/q12.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Khel Khel Main",
+      "questions": [
+        {
+          "value": 100,
+          "question": "Movie based on two female wrestlers and their story to success where Aamir Khan played the father (also a wrestler)'s role",
+          "answer": "Dangal",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "\"__ minute\n\u00a0__ minute hai tumhare paas\nshayad\ntumhari zindagi ke sabse khaas __ minute\"",
+          "answer": "Sattar (70)",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "What sport was portrayed in this 90s Aamir Khan movie costarring Deepak Tijori?",
+          "answer": "Cycle Racing: Jo Jeeta Wohi Sikander",
+          "image": null
+        },
+        {
+          "value": 400,
+          "question": "A rare bollywood movie based on football starring John Abraham, Bipasha Basu, Arshad Warsi and Boman Irani",
+          "answer": "What is Dhan Dhana Dhan Goal?",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "Tapsee Pannu played leading face in several sport movies: Shabaash Mithu (2022, Cricket), Rashmi Rocket(2021, Sprinter) and this movie (2019, Sharpshooting)",
+          "answer": "Saand Ki Aankh",
+          "image": null
+        }
+      ]
+    },
+    {
+      "name": "K...K.. K..Kapoor",
+      "questions": [
+        {
+          "value": 100,
+          "question": "The Kapoor Patriarch appeared in India's first film Alam Ara has a famous theatre in Mumbai on his name",
+          "answer": "Prithviraj Kapoor",
+          "image": null
+        },
+        {
+          "value": 200,
+          "question": "Youngest in the Kapoor family, she was born in November 2022",
+          "answer": "Raha",
+          "image": null
+        },
+        {
+          "value": 300,
+          "question": "The host of India's first musical reality show where team's songs were linked by one syllable.",
+          "answer": "Annu Kapoor",
+          "image": "images/q13.jpg"
+        },
+        {
+          "value": 400,
+          "question": "Kal Aaj Aur Kal (1972) had three generations of Kapoor on the screen. Prithviraj Kapoor (Grandfather), Raj Kapoor (father) and this Kapoor, Kareena & Karishma's dad",
+          "answer": "Randhir Kapoor",
+          "image": null
+        },
+        {
+          "value": 500,
+          "question": "Aslam in RDB, hockey player in Gold, this Kapoor actually married into the Bachchan family (Naina Bachchan's husband)",
+          "answer": "Kunal Kapoor",
+          "image": null
+        }
+      ]
+    }
+  ]
+}

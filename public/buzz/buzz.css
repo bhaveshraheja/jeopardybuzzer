@@ -1,4 +1,14 @@
-body { font-family: sans-serif; margin: 0; text-align: center; }
+body { font-family: sans-serif; margin: 0; text-align: center; box-sizing: border-box; }
 #disconnect-banner { background: darkred; color: white; padding: 0.5rem; }
 .buzz-button { width: 90vw; height: 60vh; font-size: 3rem; margin-top: 2rem; }
 .team-pick { display: block; width: 90vw; margin: 0.5rem auto; padding: 1rem; font-size: 1.5rem; }
+#player-name {
+  display: block;
+  width: 90vw;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+}

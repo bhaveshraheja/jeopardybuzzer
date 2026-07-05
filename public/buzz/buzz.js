@@ -35,15 +35,16 @@ function renderTeamPicker(state) {
   }
   root.innerHTML = `
     <h1>Pick your team</h1>
-    <input type="text" id="player-name" placeholder="Your name" value="${escapeHtml(preservedName)}" />
+    <input type="text" id="player-name" placeholder="Your name (optional)" value="${escapeHtml(preservedName)}" />
     ${state.teams.map((t) => `<button class="team-pick" data-team="${t.id}">${t.name}</button>`).join('')}
   `;
   root.querySelectorAll('.team-pick').forEach((btn) => {
     btn.addEventListener('click', () => {
       const name = document.getElementById('player-name').value.trim();
-      if (!name) return;
       myTeamId = btn.dataset.team;
-      client.send('join_team', { teamId: myTeamId, name });
+      if (name) {
+        client.send('join_team', { teamId: myTeamId, name });
+      }
       render(currentState);
     });
   });

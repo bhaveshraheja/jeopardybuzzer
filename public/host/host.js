@@ -78,6 +78,12 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
       bulbId: row.querySelector('.team-bulb').value
     }))
     .filter((t) => t.name);
+  // Always reload the game so the board/current-question/phase get a genuine
+  // fresh reset, even if this is the same game as before (e.g. reopening
+  // settings and clicking Start Game again to begin a new round).
+  if (selectedGameId) {
+    client.send('load_game', { gameId: selectedGameId });
+  }
   if (teams.length) {
     client.send('setup_teams', { teams });
   }

@@ -153,6 +153,7 @@ function renderQuestionPanel(state) {
     ${state.phase === 'answer' ? '<div class="status-badge">Answer Revealed</div>' : ''}
     <div class="q-text">${question.question}</div>
     <div class="a-text">Answer: ${question.answer}</div>
+    ${question.answerImage ? `<img class="answer-image-preview" src="/games/${state.gameId}/${question.answerImage}" title="Shown to players on reveal" />` : ''}
     <div class="timer" id="host-timer">0s</div>
     <div class="buzz-winner">${state.buzzWinner ? teamName(state, state.buzzWinner) : 'No buzz yet'}</div>
   `;

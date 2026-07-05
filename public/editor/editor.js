@@ -60,9 +60,13 @@ function openQuestionEditor(cIdx, qIdx) {
   modal.style.display = 'block';
   modal.innerHTML = `
     <textarea id="q-text" placeholder="Question">${question.question}</textarea>
-    <textarea id="a-text" placeholder="Answer">${question.answer}</textarea>
+    <label>Question image (shown when the question is revealed)</label>
     <input type="file" id="q-image" accept="image/*" />
     ${question.image ? `<img src="/games/${currentGame.id}/${question.image}" width="200" />` : ''}
+    <textarea id="a-text" placeholder="Answer">${question.answer}</textarea>
+    <label>Answer image (shown only when the answer is revealed)</label>
+    <input type="file" id="a-image" accept="image/*" />
+    ${question.answerImage ? `<img src="/games/${currentGame.id}/${question.answerImage}" width="200" />` : ''}
     <button id="save-question-btn">Save</button>
     <button id="close-modal-btn">Close</button>
   `;
@@ -79,6 +83,16 @@ function openQuestionEditor(cIdx, qIdx) {
         method: 'POST', body: formData
       }).then((r) => r.json());
       question.image = result.path;
+    }
+
+    const answerImageInput = document.getElementById('a-image');
+    if (answerImageInput.files[0]) {
+      const formData = new FormData();
+      formData.append('image', answerImageInput.files[0]);
+      const result = await fetch(`/api/games/${currentGame.id}/images`, {
+        method: 'POST', body: formData
+      }).then((r) => r.json());
+      question.answerImage = result.path;
     }
 
     await saveGame();

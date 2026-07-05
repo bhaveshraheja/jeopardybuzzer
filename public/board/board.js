@@ -107,6 +107,9 @@ function renderQuestion(state) {
   if (state.phase === 'answer' && question.answer) {
     html += `<div class="answer">${question.answer}</div>`;
   }
+  if (state.phase === 'answer' && question.answerImage) {
+    html += `<img src="/games/${state.gameId}/${question.answerImage}" />`;
+  }
   if (winnerTeam) html += `<div class="winner">${winnerTeam.name}</div>`;
   html += '</div>';
   return html;

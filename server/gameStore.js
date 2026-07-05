@@ -42,7 +42,8 @@ function createGame({ name, categoryCount, questionCount }) {
       value: (j + 1) * 100,
       question: '',
       answer: '',
-      image: null
+      image: null,
+      answerImage: null
     }))
   }));
 

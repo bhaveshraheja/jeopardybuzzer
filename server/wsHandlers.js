@@ -16,7 +16,10 @@ function redactedState(role) {
         snapshot.currentQuestion &&
         snapshot.currentQuestion.categoryIdx === cIdx &&
         snapshot.currentQuestion.questionIdx === qIdx;
-      if (!isRevealed) question.answer = null;
+      if (!isRevealed) {
+        question.answer = null;
+        question.answerImage = null;
+      }
     });
   });
   return snapshot;

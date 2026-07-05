@@ -5,3 +5,6 @@ body { font-family: sans-serif; margin: 2rem; }
 .cell { padding: 1rem; cursor: pointer; }
 #question-modal { position: fixed; top: 10%; left: 10%; right: 10%; background: white; border: 2px solid black; padding: 1rem; }
 #question-modal textarea { width: 100%; height: 4rem; display: block; margin-bottom: 0.5rem; }
+#question-modal label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 0.25rem; }
+#question-modal input[type="file"] { display: block; margin-bottom: 0.5rem; }
+#question-modal img { display: block; margin-bottom: 0.75rem; }

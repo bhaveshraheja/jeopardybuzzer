@@ -206,4 +206,19 @@ select, input[type="text"] {
 .team-buttons .team-name { flex: 1; font-weight: 600; }
 .correct-btn { border-color: #2f9e44; color: #2f9e44; }
 .wrong-btn { border-color: #d92626; color: #d92626; }
+
+.score-adjust-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  background: #f7f7fb;
+  border-radius: 0.3rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+}
+.score-adjust-row .team-name { flex: 1; font-weight: 600; }
+.score-adjust-row .score-value { font-weight: 700; min-width: 2.5rem; text-align: right; }
+.score-minus-btn { border-color: #d92626; color: #d92626; padding: 0.2rem 0.5rem; font-size: 0.8rem; }
+.score-plus-btn { border-color: #2f9e44; color: #2f9e44; padding: 0.2rem 0.5rem; font-size: 0.8rem; }
 #sidebar-answer button { padding: 0.3rem 0.6rem; font-size: 0.8rem; }

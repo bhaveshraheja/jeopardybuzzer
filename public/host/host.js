@@ -122,7 +122,25 @@ function render(state) {
   renderBoardGrid(state);
   renderQuestionPanel(state);
   renderSidebarAnswer(state);
+  renderScoreAdjust(state);
   renderTeamScores(state);
+}
+
+function renderScoreAdjust(state) {
+  const root = document.getElementById('score-adjust');
+  root.innerHTML = state.teams.map((t) => `
+    <div class="score-adjust-row">
+      <span class="team-name">${t.name}</span>
+      <span class="score-value">${t.score}</span>
+      <button class="score-minus-btn" data-team="${t.id}">-100</button>
+      <button class="score-plus-btn" data-team="${t.id}">+100</button>
+    </div>
+  `).join('');
+
+  root.querySelectorAll('.score-plus-btn').forEach((btn) =>
+    btn.addEventListener('click', () => client.send('adjust_score', { teamId: btn.dataset.team, delta: 100 })));
+  root.querySelectorAll('.score-minus-btn').forEach((btn) =>
+    btn.addEventListener('click', () => client.send('adjust_score', { teamId: btn.dataset.team, delta: -100 })));
 }
 
 function renderBoardGrid(state) {
@@ -185,8 +203,8 @@ function renderSidebarAnswer(state) {
       ${state.teams.map((t) => `
         <span>
           <span class="team-name">${t.name}</span>
-          <button class="correct-btn" data-team="${t.id}" ${state.buzzWinner === t.id ? '' : 'disabled'}>Correct</button>
-          <button class="wrong-btn" data-team="${t.id}" ${state.buzzWinner === t.id ? '' : 'disabled'}>Wrong</button>
+          <button class="correct-btn" data-team="${t.id}">Correct</button>
+          <button class="wrong-btn" data-team="${t.id}">Wrong</button>
         </span>`).join('')}
     </div>
   `;

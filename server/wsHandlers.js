@@ -88,6 +88,9 @@ function handleMessage(ws, msg, wss) {
     case 'toggle_qr':
       state.toggleQr();
       break;
+    case 'adjust_score':
+      state.adjustScore(msg.teamId, msg.delta);
+      break;
     default:
       return;
   }

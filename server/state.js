@@ -66,6 +66,12 @@ function setupTeams(teamConfigs) {
   return state;
 }
 
+function adjustScore(teamId, delta) {
+  const team = state.teams.find((t) => t.id === teamId);
+  if (team) team.score += delta;
+  return state;
+}
+
 function joinTeam(teamId, name) {
   const team = state.teams.find((t) => t.id === teamId);
   if (team && !team.members.includes(name)) {
@@ -197,5 +203,5 @@ module.exports = {
   loadBulbs, getState, loadGame, setupTeams, joinTeam, testBulb,
   startIntro, nextCategory, endIntro, selectQuestion, buzz, rejectBuzz,
   markCorrect, markWrong, revealAnswer, closeQuestion, resetBuzzer, getCurrentQuestion,
-  toggleQr
+  toggleQr, adjustScore
 };

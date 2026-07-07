@@ -42,6 +42,20 @@ function loadGame(gameId) {
   return state;
 }
 
+function restoreState(savedState) {
+  state = savedState;
+  state.teams.forEach((team) => {
+    const bulb = getBulb(team.bulbId);
+    if (bulb) wiz.warmWhite(bulb);
+  });
+  return state;
+}
+
+function isBoardComplete() {
+  if (!state.game || !state.board.length) return false;
+  return state.board.every((col) => col.every((cell) => cell === 'answered'));
+}
+
 function slugifyTeamId(name) {
   const base = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
   return `${base}-${Math.random().toString(36).slice(2, 6)}`;
@@ -203,5 +217,5 @@ module.exports = {
   loadBulbs, getState, loadGame, setupTeams, joinTeam, testBulb,
   startIntro, nextCategory, endIntro, selectQuestion, buzz, rejectBuzz,
   markCorrect, markWrong, revealAnswer, closeQuestion, resetBuzzer, getCurrentQuestion,
-  toggleQr, adjustScore
+  toggleQr, adjustScore, restoreState, isBoardComplete
 };

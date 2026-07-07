@@ -68,6 +68,22 @@ body {
 #team-setup-block { border-top: 1px solid #eceefa; padding-top: 1rem; }
 .primary.big { display: block; width: 100%; margin-top: 1rem; padding: 0.7rem; font-size: 1.05rem; }
 
+.saved-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 1rem;
+  background: #ffcc33;
+  color: #4a3900;
+  margin-left: 0.4rem;
+}
+.game-card.selected .saved-badge { background: #ffcc33; color: #4a3900; }
+#resume-block { border-top: 1px solid #eceefa; padding-top: 1rem; }
+#resume-block p { font-size: 0.9rem; color: #555; }
+
 .layout {
   display: none;
   gap: 1rem;

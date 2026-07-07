@@ -6,6 +6,7 @@ const fs = require('fs');
 const multer = require('multer');
 const QRCode = require('qrcode');
 const gameStore = require('./gameStore');
+const sessionStore = require('./sessionStore');
 const { WebSocketServer } = require('ws');
 const state = require('./state');
 const wsHandlers = require('./wsHandlers');
@@ -68,7 +69,8 @@ app.get('/api/qrcode', async (req, res) => {
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.get('/api/games', (req, res) => {
-  res.json(gameStore.listGames());
+  const games = gameStore.listGames();
+  res.json(games.map((g) => ({ ...g, hasSavedSession: sessionStore.hasSaved(g.id) })));
 });
 
 app.get('/api/games/:id', (req, res) => {

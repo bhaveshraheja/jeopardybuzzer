@@ -29,10 +29,14 @@ fetch('/api/bulbs').then((r) => r.json()).then((data) => {
   addTeamBtn.disabled = false;
 });
 
+let gamesList = [];
+
 async function loadGamesList() {
-  const games = await fetch('/api/games').then((r) => r.json());
+  gamesList = await fetch('/api/games').then((r) => r.json());
   const list = document.getElementById('games-list');
-  list.innerHTML = games.map((g) => `<button class="game-card" data-id="${g.id}">${g.name}</button>`).join('');
+  list.innerHTML = gamesList.map((g) =>
+    `<button class="game-card" data-id="${g.id}">${g.name}${g.hasSavedSession ? ' <span class="saved-badge">saved</span>' : ''}</button>`
+  ).join('');
   list.querySelectorAll('.game-card').forEach((btn) => {
     btn.addEventListener('click', () => selectGame(btn.dataset.id));
   });
@@ -48,10 +52,32 @@ function highlightSelectedGame() {
 
 function selectGame(gameId) {
   selectedGameId = gameId;
-  client.send('load_game', { gameId });
-  document.getElementById('team-setup-block').style.display = 'block';
   highlightSelectedGame();
+  const game = gamesList.find((g) => g.id === gameId);
+  const resumeBlock = document.getElementById('resume-block');
+  const teamBlock = document.getElementById('team-setup-block');
+
+  if (game && game.hasSavedSession) {
+    resumeBlock.style.display = 'block';
+    teamBlock.style.display = 'none';
+  } else {
+    resumeBlock.style.display = 'none';
+    client.send('load_game', { gameId });
+    teamBlock.style.display = 'block';
+  }
 }
+
+document.getElementById('resume-game-btn').addEventListener('click', () => {
+  client.send('resume_session', { gameId: selectedGameId });
+  uiMode = 'play';
+  render(currentState);
+});
+
+document.getElementById('start-fresh-btn').addEventListener('click', () => {
+  client.send('load_game', { gameId: selectedGameId });
+  document.getElementById('resume-block').style.display = 'none';
+  document.getElementById('team-setup-block').style.display = 'block';
+});
 
 document.getElementById('add-team-btn').addEventListener('click', () => addTeamRow());
 
@@ -70,6 +96,11 @@ function addTeamRow(prefillName, prefillBulbId) {
   container.appendChild(row);
 }
 
+function isBoardComplete(state) {
+  return Boolean(state && state.board && state.board.length &&
+    state.board.every((col) => col.every((cell) => cell === 'answered')));
+}
+
 document.getElementById('start-game-btn').addEventListener('click', () => {
   const rows = document.querySelectorAll('.team-row');
   const teams = Array.from(rows)
@@ -78,10 +109,10 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
       bulbId: row.querySelector('.team-bulb').value
     }))
     .filter((t) => t.name);
-  // Always reload the game so the board/current-question/phase get a genuine
-  // fresh reset, even if this is the same game as before (e.g. reopening
-  // settings and clicking Start Game again to begin a new round).
-  if (selectedGameId) {
+  // Only force a fresh reload if the board was already fully played through —
+  // otherwise this would wipe out an in-progress game just for reopening
+  // settings (e.g. to tweak a bulb) and clicking Start Game again.
+  if (selectedGameId && isBoardComplete(currentState)) {
     client.send('load_game', { gameId: selectedGameId });
   }
   if (teams.length) {
@@ -93,6 +124,7 @@ document.getElementById('start-game-btn').addEventListener('click', () => {
 
 document.getElementById('settings-btn').addEventListener('click', () => {
   uiMode = 'setup';
+  document.getElementById('resume-block').style.display = 'none';
   const container = document.getElementById('teams-setup');
   container.innerHTML = '';
   if (currentState && currentState.teams.length) {

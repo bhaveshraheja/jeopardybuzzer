@@ -1,4 +1,5 @@
 const state = require('./state');
+const sessionStore = require('./sessionStore');
 
 function connectionRole(req) {
   const url = new URL(req.url, 'http://localhost');
@@ -57,7 +58,13 @@ function handleMessage(ws, msg, wss) {
       break;
     case 'load_game':
       state.loadGame(msg.gameId);
+      sessionStore.remove(msg.gameId);
       break;
+    case 'resume_session': {
+      const saved = sessionStore.load(msg.gameId);
+      if (saved) state.restoreState(saved);
+      break;
+    }
     case 'start_intro':
       state.startIntro();
       break;
@@ -94,7 +101,18 @@ function handleMessage(ws, msg, wss) {
     default:
       return;
   }
+  persistOrCleanup();
   broadcast(wss);
+}
+
+function persistOrCleanup() {
+  const snapshot = state.getState();
+  if (!snapshot.gameId) return;
+  if (state.isBoardComplete()) {
+    sessionStore.remove(snapshot.gameId);
+  } else {
+    sessionStore.save(snapshot.gameId, snapshot);
+  }
 }
 
 function attach(wss) {

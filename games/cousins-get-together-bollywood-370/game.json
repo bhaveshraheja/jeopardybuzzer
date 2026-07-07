@@ -22,7 +22,7 @@
         },
         {
           "value": 300,
-          "question": "He's cycling down an open road when he runs into a famous actress whose car has broken down \u2014 one thing leads to another, and soon he's marrying her. Then his father snaps him out of it: he's been daydreaming in the family barber shop the whole time.",
+          "question": "He's cycling down an open road when he runs into a famous actress whose car has broken down — one thing leads to another, and soon he's marrying her. Then his father snaps him out of it: he's been daydreaming in the family barber shop the whole time.",
           "answer": "Aamir Khan, Amar (Andaaz Apna Apna)",
           "image": null,
           "answerImage": "images/img1.webp"
@@ -142,14 +142,14 @@
         },
         {
           "value": 300,
-          "question": "__________ : Dilwale Dulhaniya Le Jayenge\nMrs. Khanna : Kuch Kuch Hota Hai\nDaijan/DJ \u00a0 \u00a0 \u00a0: Kabhi Khushi Kabhi Gham\nMother or mother-like Roles played by Farida Jalal in movies",
+          "question": "__________ : Dilwale Dulhaniya Le Jayenge\nMrs. Khanna : Kuch Kuch Hota Hai\nDaijan/DJ      : Kabhi Khushi Kabhi Gham\nMother or mother-like Roles played by Farida Jalal in movies",
           "answer": "Lajjo/ Lajwanti",
           "image": "images/img10.jpg",
           "answerImage": null
         },
         {
           "value": 400,
-          "question": "Priyanka Chopra played the role of a mother of a teenage daughter, in this movie based off a real life story with Farhan Akhtar",
+          "question": "Priyanka Chopra played the role of a mother of a teenage daughter, in this movie based of a real life story with Farhan Akhtar",
           "answer": "Sky is Pink",
           "image": null,
           "answerImage": "images/img11.jpg"
@@ -175,7 +175,7 @@
         },
         {
           "value": 200,
-          "question": "\"__ minute\n\u00a0__ minute hai tumhare paas\nshayad\ntumhari zindagi ke sabse khaas __ minute\"",
+          "question": "\"__ minute\n __ minute hai tumhare paas\nshayad\ntumhari zindagi ke sabse khaas __ minute\"",
           "answer": "Sattar (70)",
           "image": null,
           "answerImage": null

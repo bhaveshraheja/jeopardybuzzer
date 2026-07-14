@@ -3,5 +3,7 @@
 .superpowers/
 node_modules/
 *.iml
+.DS_Store
 wifi.json
+bulbs.json
 state/

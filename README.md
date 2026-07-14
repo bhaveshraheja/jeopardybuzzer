@@ -19,7 +19,13 @@ already have cached) — everyone just opens a URL on their phone.
 npm install
 ```
 
-Edit `bulbs.json` with your bulbs' real IP addresses:
+Copy `bulbs.json.example` to `bulbs.json` and fill in your bulbs' real IP
+addresses:
+
+```bash
+cp bulbs.json.example bulbs.json
+# then edit bulbs.json with your real bulb IPs
+```
 
 ```json
 [
@@ -34,14 +40,15 @@ editing `bulbs.json`.
 
 Copy `wifi.json.example` to `wifi.json` and fill in your real network name
 and password — this powers the join-QR-codes screen (see
-[QR codes for joining](#qr-codes-for-joining)). `wifi.json` is git-ignored
-since your WiFi password is more sensitive than the bulb IPs; don't remove it
-from `.gitignore`.
+[QR codes for joining](#qr-codes-for-joining)).
 
 ```bash
 cp wifi.json.example wifi.json
 # then edit wifi.json with your real ssid/password
 ```
+
+Both `bulbs.json` and `wifi.json` are git-ignored since they contain
+network-specific/private details — don't remove them from `.gitignore`.
 
 ## Running
 
@@ -123,6 +130,12 @@ two-step join screen on `/board`:
    (auto-detected), plus the URL as text.
 
 Toggle it off from the same button to go back to the game.
+
+## Credits
+
+Game-night format inspired by [JeopardyLabs](https://jeopardylabs.com/) —
+this project builds on that idea with a real-time, physical buzzer/bulb
+experience layered on top.
 
 ## Notes
 

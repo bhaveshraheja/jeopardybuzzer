@@ -113,10 +113,39 @@ light up. Sound and gameplay work fine regardless.
 
 ## Sounds
 
-`sounds/buzz.mp3`, `sounds/miss.mp3`, and `sounds/reset.mp3` play on buzz,
-missed buzz, and buzzer reset respectively — replace them with your own
-clips (same filenames) any time. Audio plays from the Mac's speakers — if
-the Mac is connected to the TV via AirPlay, sound comes through the TV too.
+Sound is played by the **server Mac**, using macOS `afplay` and the Mac's
+currently selected audio output. The `/buzz` phones, `/host` browser, and
+`/board` browser do not play these sounds themselves. Before the game, connect
+speakers or a TV to the Mac, select that device under macOS **Sound > Output**,
+and turn up its volume. Casting the board to a TV does not by itself guarantee
+that the Mac's audio is routed to the TV. If you run the server on a non-macOS
+machine, `afplay` is unavailable and these sounds will not play without
+changing `server/sound.js` to use a player installed on that machine.
+
+`sounds/buzz.mp3` plays for an accepted buzz while a question is open;
+`sounds/miss.mp3` plays for a rejected buzz. `sounds/reset.mp3` plays when a
+held buzzer is cleared (by **Reset Buzzer**, a wrong answer, revealing the
+answer, or closing the question). Resetting when nobody has buzzed stays
+silent. Replace any clip with your own MP3 using the same filename. To check
+the Mac's output independently of the app, run `afplay sounds/buzz.mp3` on
+the server Mac.
+
+Optional `sounds/wait.mp3` starts at a lower volume when a question opens and
+loops until a team buzzes. It stops for the buzzer sound and resumes after the
+reset sound if the question is still open and another team can try. It also
+stops on answer reveal, question close, or game change. Without this file, the
+game works as before, without waiting music.
+
+For private home use, a 33-second recording of the Jeopardy! thinking music
+is available at [Orange Free Sounds](https://orangefreesounds.com/jeopardy-theme-song/)
+([MP3 download](https://www.orangefreesounds.com/wp-content/uploads/2014/10/Jeopardy-theme-song.mp3)).
+Save it locally as `sounds/wait.mp3`; the file is git-ignored and must not be
+committed or redistributed. The source labels the recording **private use
+only** and does not claim to own the underlying composition. For use beyond a
+private game, obtain the necessary rights or supply music you can use. Other
+Jeopardy!-labeled sound samples can be found at
+[Quick Sounds](https://quicksounds.com/library/sounds/jeopardy), but their
+rights were not verified, so this project keeps its existing buzzer clips.
 
 ## QR codes for joining
 

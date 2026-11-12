@@ -35,6 +35,7 @@ function getState() {
 
 function loadGame(gameId) {
   const game = readGame(gameId);
+  sound.stopWaitingMusic();
   state = createEmptyState();
   state.gameId = gameId;
   state.game = game;
@@ -43,11 +44,13 @@ function loadGame(gameId) {
 }
 
 function restoreState(savedState) {
+  sound.stopWaitingMusic();
   state = savedState;
   state.teams.forEach((team) => {
     const bulb = getBulb(team.bulbId);
     if (bulb) wiz.warmWhite(bulb);
   });
+  if (state.phase === 'question' && !state.buzzWinner) sound.startWaitingMusic();
   return state;
 }
 
@@ -108,6 +111,7 @@ function toggleQr() {
 }
 
 function startIntro() {
+  sound.stopWaitingMusic();
   state.phase = 'intro';
   state.introCategoryIdx = 0;
   return state;
@@ -128,10 +132,12 @@ function endIntro() {
 }
 
 function selectQuestion(categoryIdx, questionIdx) {
+  sound.stopWaitingMusic();
   state.phase = 'question';
   state.currentQuestion = { categoryIdx, questionIdx, questionStartedAt: Date.now() };
   state.buzzWinner = null;
   state.answeredBy = [];
+  sound.startWaitingMusic();
   return state;
 }
 
@@ -152,6 +158,7 @@ function buzz(teamId) {
     const bulb = getBulb(team.bulbId);
     if (bulb) wiz.red(bulb);
   }
+  sound.stopWaitingMusic();
   sound.play('buzz');
   return { accepted: true };
 }
@@ -205,11 +212,25 @@ function closeQuestion() {
 }
 
 function resetBuzzer() {
+  const hadWinner = state.buzzWinner !== null;
   state.buzzWinner = null;
   state.teams.forEach((team) => {
     const bulb = getBulb(team.bulbId);
     if (bulb) wiz.warmWhite(bulb);
   });
+  if (state.phase !== 'question') sound.stopWaitingMusic();
+  if (hadWinner) {
+    const question = state.currentQuestion;
+    sound.play('reset', () => {
+      if (state.phase === 'question' && state.currentQuestion === question &&
+          !state.buzzWinner && state.answeredBy.length < state.teams.length) {
+        sound.startWaitingMusic();
+      }
+    });
+  } else if (state.phase === 'question' && state.currentQuestion &&
+             state.answeredBy.length < state.teams.length) {
+    sound.startWaitingMusic();
+  }
   return state;
 }
 

@@ -7,3 +7,4 @@ node_modules/
 wifi.json
 bulbs.json
 state/
+sounds/wait.mp3
